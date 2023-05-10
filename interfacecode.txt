@@ -1,0 +1,68 @@
+#  Python code for chatGPT API host
+import socket
+import openai
+
+def generate_function( action):
+    openai.api_key = "my_key"
+    prompt = f"Create MicroPython code for picoW that performs the action: {action}.include import statements. "
+    #  For I2C or i2c setup use {I2C_TEMPLATE}. For ADC or adc setup use {ADC_TEMPLATE}. For PWM or pwm setup use {PWM_TEMPLATE}. For Pin alone setup use {PIN_TEMPLATE}.
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=2048,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    function_code = response.choices[0].text.strip()
+    return function_code
+
+def send_code_to_pico(code, ip_address='ip_adress_picoW', port=8000):
+    # Set up socket for sending data
+    s = socket.socket()
+    s.connect((ip_address, port))
+
+    # Send code segment to Pico
+    s.sendall(code.encode())
+
+    response = s.recv(1024)
+    if response.startswith(b'Error'):
+        print('Error:', response.decode())
+    else:
+        print('Code executed successfully')
+    s.close()
+
+
+#  MicroPython server for  raspberry pi picoW
+import network
+import socket
+
+# Set up wireless interface
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect('Moto1', 'ttom4ever')
+while not wlan.isconnected():
+    pass
+
+# Set up socket for incoming data
+s = socket.socket()
+s.bind(('', 8000))
+s.listen(1)
+
+# Loop to receive and execute code
+while True:
+    conn, addr = s.accept()
+    print('Connection from:', addr)
+    
+    data = conn.recv(65000)
+    
+    try:
+        exec(data)
+        conn.sendall(b'Code executed successfully')
+    except Exception as e:
+        error_msg = f'Error executing code: {e}'
+        conn.sendall(error_msg.encode())
+    conn.close()
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
