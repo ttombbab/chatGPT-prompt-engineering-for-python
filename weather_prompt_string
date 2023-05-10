@@ -1,0 +1,6 @@
+function: 'Retrieve Weather Data', input: 'longitude (float), latitude (float)', output: 'temperature (float), humidity (float), wind_speed (float), wind_direction (float)', description: 'Fetch weather data from an API using given longitude and latitude, and return temperature, humidity, wind speed, and wind direction.'}
+
+{function: 'Get Default Location', output: 'longitude (float), latitude (float)', description: 'Return the default longitude and latitude.'}
+
+
+{User Interface: 'Weather App', components: 'Text input fields for longitude and latitude, text labels for temperature, humidity, wind speed, and wind direction', behavior: 'On initialization, fill the longitude and latitude input fields with the default location. Call the Update Weather Display function to fetch and display the weather data.'}

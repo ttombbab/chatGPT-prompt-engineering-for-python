@@ -1,0 +1,16 @@
+    {function: 'get_weather_data(longitude, latitude) -> (temperature:float, humidity:float, wind_speed:float, wind_direction:float)',
+    language: 'Python',
+    code: 'import requests\n\nurl = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&units=imperial&appid=YOUR_API_KEY"\nresponse = requests.get(url)\nresponse.raise_for_status()\nweather_data = response.json()\n\ntemperature = weather_data["main"]["temp"]\nhumidity = weather_data["main"]["humidity"]\nwind_speed = weather_data["wind"]["speed"]\nwind_direction = weather_data["wind"]["deg"]\n\nreturn temperature, humidity, wind_speed, wind_direction'}
+
+    {function: 'get_location() -> (longitude:float, latitude:float)',
+    language: 'Python',
+    code: 'return (-97.7431, 30.2672)'}
+
+    {function: 'update_weather()',
+    language: 'Python',
+    code: 'latitude_value = float(latitude_entry.get())\nlongitude_value = float(longitude_entry.get())\ntemperature_value, humidity_value, wind_speed_value, wind_direction_value = get_weather_data(longitude_value, latitude_value)\ntemperature_label.config(text=str(temperature_value))\nhumidity_label.config(text=str(humidity_value))\nwind_speed_label.config(text=str(wind_speed_value))\nwind_direction_label.config(text=str(wind_direction_value))\napp.after(900000, update_weather)'}
+
+    {frame: 'Weather App',
+    objects: ([longitude:text, latitude:text, temperature:text, humidity:text, wind_speed:text, wind_direction:text],
+    function: 'OnGetWeather(event)',
+    code: 'app = tk.Tk()\napp.title("Weather App")\n\nframe = ttk.Frame(app, padding="10")\nframe.grid(column=0, row=0)\n\nlongitude_label = ttk.Label(frame, text="Longitude")\nlongitude_label.grid(column=0, row=0)\nlongitude_entry = ttk.Entry(frame)\nlongitude_entry.grid(column=1, row=0)\n\nlatitude_label = ttk.Label(frame, text="Latitude")\nlatitude_label.grid(column=0, row=1)\nlatitude_entry = ttk.Entry(frame)\nlatitude_entry.grid(column=1, row=1)\n\ntemperature_label = ttk.Label(frame, text="")\ntemperature_label.grid(column=0, row=2)\nhumidity_label = ttk.Label(frame, text="")\nhumidity_label.grid(column=1, row=2)\nwind_speed_label = ttk.Label(frame, text="")\nwind_speed_label.grid(column=0, row=3)\nwind_direction_label = ttk.Label(frame, text="")\nwind_direction_label.grid(column=1, row=3)\n\ndefault_longitude, default_latitude = get_location()\nlongitude_entry.insert(0, str(default_longitude))\nlatitude_entry.insert(0, str(default_latitude))\n\nupdate_weather()\n\napp.mainloop()'}
