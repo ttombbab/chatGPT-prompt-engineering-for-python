@@ -1,0 +1,14 @@
+{function: 'get_weather_data(longitude, latitude) -> (temperature:float, humidity:float, wind_speed:float, wind_direction:float)', 
+language: 'Python',
+code: 'import requests\n\nurl = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&units=imperial&appid=YOUR_API_KEY"\nresponse = requests.get(url)\nresponse.raise_for_status()\nweather_data = response.json()\n\n# Extract the relevant weather data from the API response\ntemperature = weather_data["main"]["temp"]\nhumidity = weather_data["main"]["humidity"]\nwind_speed = weather_data["wind"]["speed"]\nwind_direction = weather_data["wind"]["deg"]\n\nreturn temperature, humidity, wind_speed, wind_direction'}
+
+{function: 'get_plant_dictionary(plant_name) -> Images and info about a plant;dict', 
+language: 'Python', 
+code: 'return plant_dict'}
+
+{frame: 'Garden App', 
+objects: ([longitude:text, latitude:text, temperature:text, humidity:text, wind_speed:text, wind_direction:text, get_weather:button,plant_display;panel,plant_lifeline:panel], 
+function: 'OnGetWeather(event)', 
+code: 'latitude_value = float(latitude.text)\nlongitude_value = float(longitude.text)\ntemperature_value, humidity_value, wind_speed_value, wind_direction_value = get_weather_data(longitude_value, latitude_value)\ntemperature.text = str(temperature_value)\nhumidity.text = str(humidity_value)\nwind_speed.text = str(wind_speed_value)\nwind_direction.text = str(wind_direction_value)')}
+{'include code to display images from get_plant_dictionary in plant_display corralated with an line and dots image on the plant_lifeline'}
+{'style:center controlls vertically,use colorDB and shades of pink or red'}

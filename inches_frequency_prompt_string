@@ -1,0 +1,14 @@
+{prompt:'Enter 3 measurements in inches, and temperature in F:', 
+variables: [measurement_1:float, measurement_2:float, measurement_3:float, measurement_f:float]}
+
+{function: 'inches_to_frequency(inches, temp) -> frequency', language: 'Python', 
+code: 'return 0.00194 * temp + 1116 / (inches / 12)'}
+
+{transform: 'measurement_1 -> inches_to_frequency(_, measurement_f) -> freq_1'}
+{transform: 'measurement_2 -> inches_to_frequency(_, measurement_f) -> freq_2'}
+{transform: 'measurement_3 -> inches_to_frequency(_, measurement_f) -> freq_3'}
+
+{variables: [sps:int=44100, duration_s:int=300]}
+{transform: '(np.sin(2 * np.pi * np.arange(duration_s * sps) * freq_1 / sps) + np.sin(2 * np.pi * np.arange(duration_s * sps) * freq_2 / sps) + np.sin(2 * np.pi * np.arange(duration_s * sps) * freq_3 / sps)) -> waveform'}
+{transform: '(np.int16(waveform * 32767)) -> waveform_integers'}
+{output: 'write('solar' + str(measurement_f) + '.wav', sps, waveform_integers)'}
