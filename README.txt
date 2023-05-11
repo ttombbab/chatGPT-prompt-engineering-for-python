@@ -28,9 +28,11 @@ Regarding the LLM (Large Language Model) and prompt engineering, here's how the 
 
 General prompt engineering involves designing the bitmask or prompt. In that vein, here is your prompt for the day: 7361792068656c6c6f,696e207370616e697368
 
+I've included a interface program for PicoW and a universal python function both requier openai and an API_KEY. There are also some examples of the sudo laguage I made called prompt_string that atkes the general form {action:object} flow_operator_symbol {action:object}. Actions are names,catagories or desciptions. objects are clasic objects,real world devices, filters or interfaces. current accepted flow_operator_symbols are '->' movement of data etc, '=>' tranformation or transmutation od data etc, '>>' addition of eliments or multiple operations etc, '|' a sepration between input and output.
+
 To get started with Prompt String, follow these steps:
 
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/ttombbab/prompt-string.git
+https://github.com/ttombbab/chatGPT-prompt-engineering-for-python
