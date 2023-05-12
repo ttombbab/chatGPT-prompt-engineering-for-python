@@ -1,0 +1,27 @@
+After finding that just actions in a row resulted in blending.
+I found that useing artist language in prompt string worked much better.
+An example;
+{background;calm ocean}{midground;beach,rocks,trees,sand}{forground;person holding a fancy tropical drink}
+
+from chattybot;
+Artists use a variety of terms to describe different areas of an image. Here are some commonly used terms:
+
+Background: The area or space that appears farthest from the viewer, typically behind the main subjects or objects in the image.
+
+Foreground: The area or space that appears closest to the viewer, usually in front of the main subjects or objects.
+
+Midground: The area or space that lies between the background and foreground, creating a sense of depth and perspective.
+
+Focal point: The main point of interest in the image, where the viewer's attention is drawn.
+
+Composition: The arrangement and placement of elements within the image, including the balance, framing, and overall visual structure.
+
+Negative space: The empty or unoccupied areas surrounding the main subjects or objects, which can enhance the focus and impact of the image.
+
+Lighting: The way light is depicted or used within the image, including the direction, intensity, and quality of light sources.
+
+Texture: The visual or tactile quality of surfaces depicted in the image, ranging from smooth and glossy to rough and gritty.
+
+Color palette: The range and combination of colors used in the image, including their hues, saturation, and overall harmony.
+
+Perspective: The way objects and elements are represented in terms of size, scale, and spatial relationships to create a sense of depth and realism.
