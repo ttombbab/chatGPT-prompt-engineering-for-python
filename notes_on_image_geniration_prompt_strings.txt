@@ -25,3 +25,10 @@ Texture: The visual or tactile quality of surfaces depicted in the image, rangin
 Color palette: The range and combination of colors used in the image, including their hues, saturation, and overall harmony.
 
 Perspective: The way objects and elements are represented in terms of size, scale, and spatial relationships to create a sense of depth and realism.
+
+Try this;
+create a synopsys of the book dune using these artistic terms; 
+   Background,Foreground,Midground,Focal point,Composition,Lighting,Texture,Color palette. Use three comma seperated words for each term
+
+Then you split the list into two prompts and generate.
+
